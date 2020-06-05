@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 import SliderLayout from "../layout/SliderLayout.vue";
 import Welcome from "../views/welcome/welcome.vue";
 import Test from "../views/other/test.vue";
+import TableExample from "../views/tableExample/tableExample.vue";
 
 Vue.use(VueRouter);
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
         path: "/sub1",
         name: "subMenu/sub1",
         component: Test,
+      },
+      {
+        path: "/tableExample",
+        name: "tableExample",
+        component: TableExample,
       }
     ]
   },

@@ -14,7 +14,12 @@ const menuConfig = [
         to: '/sub1',
       }
     ]
-  }
+  },
+  {
+    title: 'tableExample',
+    to: '/tableExample',
+    icon: 'pie-chart'
+  },
 ]
 
 export default menuConfig;
