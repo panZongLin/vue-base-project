@@ -8,8 +8,11 @@ import "./registerServiceWorker";
 import router from "./config/router";
 import store from "./store";
 
+import Popup from './components/Popup';
+
 Vue.config.productionTip = false;
 Vue.use(Antd);
+Vue.prototype.$popup = Popup;
 
 new Vue({
   router,
