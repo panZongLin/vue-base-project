@@ -4,16 +4,15 @@ import Popup from './popup.vue'
 const PopupBox = Vue.extend(Popup)
 
 const PopupRender = function (data) {
-  let instance = new PopupBox({
-    data
-  }).$mount()
+    let instance = new PopupBox({
+        data
+    }).$mount()
 
-  document.body.appendChild(instance.$el)
+    document.body.appendChild(instance.$el)
 
-  Vue.nextTick(() => {
-    instance.visible = true
-    // visible 和弹窗组件里的visible对应，用于控制显隐
-  })
+    Vue.nextTick(() => {
+        instance.visible = true //调用时，展示弹窗
+    })
 }
 
 export default PopupRender
