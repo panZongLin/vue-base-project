@@ -45,7 +45,7 @@
 		<el-dialog :title="modalTitle" :visible="visible"  width="30%" @close="cancelModal">
 		</el-dialog>
     </div>
-</template>
+</template>  
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
