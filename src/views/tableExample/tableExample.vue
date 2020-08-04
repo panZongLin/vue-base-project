@@ -135,7 +135,7 @@ export default {
 			visible: false,
 			modalTitle: "create",
 			formLayout: "horizontal",
-			form: this.$form.createForm(this, { name: "coordinated" })
+			form: this.$form.createForm(this, { name: "userInfoForm" })
 		}
 	},
 
@@ -173,7 +173,11 @@ export default {
 			this.visible = true;
 			if (way == "edit") {
 				this.modalTitle = "edit";
-				setTimeout(() => this.form.setFieldsValue(node), 1000);
+				let editNode = {
+					...node,
+					address: node.address['city']+'-'+node.address['street']
+				}
+				setTimeout(() => this.form.setFieldsValue(editNode), 1000);
 			} else {
 				this.modalTitle = "create";
 			}
@@ -206,9 +210,10 @@ export default {
 		const { getFieldDecorator } = form;
 		return(
 			<div>
-				<h3>A {A} doubleA {doubleA}</h3>
+				{/**ant design vue */}
+				<h3>A {A} doubleA {doubleA}</h3>				
 				<a-button type="primary" onClick={this.tripleA}>A*3</a-button>
-				<a-button type="primary" onClick={()=>this.showModal('create')} style={{marginLeft: '10px'}}>create</a-button>
+				<a-button type="primary" onClick={()=>this.showModal('create')} style={{marginLeft: '10px'}}>create</a-button>			
 
 				{/**表格 */}
 				<a-table columns={columns} data-source={tableList} rowKey={(record)=>record.id} style={{marginTop: '10px'}}>
@@ -240,7 +245,7 @@ export default {
 							{getFieldDecorator('phone', {})(<a-input />)}
 						</a-form-item>
 						<a-form-item label="address">
-							{getFieldDecorator('address', {})(<a-input />)}
+							{getFieldDecorator('address', {})(<a-input placeholder="city-street" />)}
 						</a-form-item>
 						<a-form-item wrapper-col={{ span: 12, offset: 5 }}>
 							<a-button onClick={this.cancelModal} style={{marginRight: '10px'}}>Cancel</a-button>

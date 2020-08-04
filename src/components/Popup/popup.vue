@@ -1,10 +1,3 @@
-<template>
-	<div>
-		<a-modal v-model="visible" :title="title" :footer="null" @cancel="handleCancel">
-			<p>{{content}}</p>
-		</a-modal>
-	</div>
-</template>
 <script>
 export default {
 	data() {
@@ -23,6 +16,20 @@ export default {
 			this.cancel();
 			this.visible = false;
 		}
+	},
+	render() {
+		const {visible, title, content} = this;
+		return(
+			<div>
+				{/** 
+				<a-modal visible={visible} title={title} footer="" onCancel={this.handleCancel}>
+					<p>{content}</p>
+				</a-modal>*/}
+				<el-dialog title={title} visible={visible} onClose={this.handleCancel}>
+					<p>{content}</p>
+				</el-dialog>
+			</div>
+		)
 	}
 };
 </script>

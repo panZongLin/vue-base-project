@@ -13,7 +13,7 @@
 // }
 
 export function getTableListQuest(payload) {
-	console.log(payload)
+	console.log('payload', payload)
 	let num = 100, data = [];
 	for (let i = 0; i < num; i++) {
 		data.push({

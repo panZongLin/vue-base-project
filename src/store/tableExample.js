@@ -17,19 +17,21 @@ export default {
 	},
 
 	actions: {
-		async getTableList(context, payload) {
+		// -> dispatch('tableExample/getTableList')
+		async getTableList(context, payload) {			
 			let res = await getTableListQuest(payload);
 			context.commit("updateList", {
 				tableList: res
 			})
-		}, // -> dispatch('tableExample/getTableList')
+		}, 
 	},
 
 	mutations: {
+		// -> commit('tableExample/tripleA')
 		tripleA(state) {
 			state.A = state.A * 3
-		}, // -> commit('tableExample/tripleA')
-		
+		}, 	
+
 		updateList(state, payload) {
 			state.tableList = payload.tableList
 		}

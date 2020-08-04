@@ -26,12 +26,15 @@ export default {
 export default {
 	props: ["title", "desc"],
 	data() {
-		return {};
+		return {
+			val: ''
+		};
 	},
 	methods: {
-		// onChange: function(e) {
-		// 	this.$emit("handleChange", e.target.value);
-		// }
+		inputChange: function(value) {
+			this.val = value;
+			this.$emit("handleChange", value);
+		}
 	},
 	render() {
 		return(
@@ -39,10 +42,17 @@ export default {
 				{this.$slots.name} 
 				<span>{this.title}</span>
 				<p>子组件的描述: {this.desc}</p>
-				<a-input 
-					style={{width: '250px'}} 
-					onChange={(e)=>this.$emit("handleChange", e.target.value)} 				
-				/>				
+				{/**
+					<a-input 
+						style={{width: '250px'}} 
+						onChange={(e)=>this.$emit("handleChange", e.target.value)} 				
+					/>
+				 */}
+				<el-input 
+					value={this.val}
+					style={{width: '250px'}}
+					onInput={(value)=>this.inputChange(value)} 	
+				/>								
 			</div>
 		)
 	}

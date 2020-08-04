@@ -16,8 +16,13 @@ const menuConfig = [
 		]
 	},
 	{
-		title: 'tableExample',
+		title: 'ant design vue',
 		to: '/tableExample',
+		icon: 'pie-chart'
+	},
+	{
+		title: 'element ui',
+		to: '/tableExample2',
 		icon: 'pie-chart'
 	},
 ]

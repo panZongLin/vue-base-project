@@ -6,7 +6,7 @@ import SliderLayout from "../layout/SliderLayout.vue";
 import Welcome from "../views/welcome/welcome.vue";
 import Test from "../views/other/test.vue";
 import TableExample from "../views/tableExample/tableExample.vue";
-
+import TableExample2 from "../views/tableExample/tableExample2.vue";
 
 import Page404 from "../views/page404.vue";
 
@@ -31,6 +31,11 @@ const routes = [
 				path: "/tableExample",
 				name: "tableExample",
 				component: TableExample,
+			},
+			{
+				path: "/tableExample2",
+				name: "tableExample2",
+				component: TableExample2,
 			}
 		]
 	},
