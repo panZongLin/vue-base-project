@@ -177,7 +177,7 @@ export default {
 					...node,
 					address: node.address['city']+'-'+node.address['street']
 				}
-				setTimeout(() => this.form.setFieldsValue(editNode), 1000);
+				this.form.setFieldsValue(editNode)
 			} else {
 				this.modalTitle = "create";
 			}

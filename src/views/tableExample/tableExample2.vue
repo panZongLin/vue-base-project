@@ -22,7 +22,7 @@
             </el-table-column>
             <el-table-column label="action">
                 <template slot-scope="scope">
-                    <a @click="handleEdit(scope.$index, scope.row)">edit</a>
+                    <a @click="showModal('edit', scope.row)">edit</a>
                     <el-divider direction="vertical"></el-divider>
                     <el-popconfirm title="这是一段内容确定删除吗？" @onConfirm="confirmDelete" @onCancel="cancelDelete">
                         <a slot="reference">delete</a>
@@ -38,11 +38,36 @@
 			:page-size="pageSize" 
 			layout="total, sizes, prev, pager, next, jumper" 
 			:total="tableList.length"
+			:style="{float: 'right', marginTop: '10px'}"
 		>
         </el-pagination>
 
 		<!--表单 -->
 		<el-dialog :title="modalTitle" :visible="visible"  width="30%" @close="cancelModal">
+			<el-form :model="ruleForm" :rules="rules" ref="ruleFormRef">
+				<el-form-item label="" prop="id" label-width="80px">
+					<el-input v-model="ruleForm.id" :style="{display: 'none'}"></el-input>
+				</el-form-item>
+				<el-form-item label="name" prop="name" label-width="80px" :style="{marginBottom: '22px'}">
+					<el-input v-model="ruleForm.name"></el-input>
+				</el-form-item>
+				<el-form-item label="username" prop="username" label-width="80px">
+					<el-input v-model="ruleForm.username"></el-input>
+				</el-form-item>
+				<el-form-item label="website" prop="website" label-width="80px">
+					<el-input v-model="ruleForm.website"></el-input>
+				</el-form-item>
+				<el-form-item label="phone" prop="phone" label-width="80px">
+					<el-input v-model="ruleForm.phone"></el-input>
+				</el-form-item>
+				<el-form-item label="address" prop="address" label-width="80px">
+					<el-input v-model="ruleForm.address" placeholder="city-street"></el-input>
+				</el-form-item>
+				<el-form-item>
+					<el-button @click="cancelModal" :style="{marginLeft: '80px'}">Cancel</el-button>
+					<el-button type="primary" @click="handleSubmit('ruleFormRef', ruleForm)">Submit</el-button>				
+				</el-form-item>
+			</el-form>
 		</el-dialog>
     </div>
 </template>  
@@ -57,8 +82,19 @@ export default {
 			pageSize: 10,			       
 			visible: false,
 			modalTitle: "create",
-			// formLayout: "horizontal",
-			// form: this.$form.createForm(this, { name: "userInfoForm" })
+			ruleForm: {
+				id: '',
+				name: '',
+				username: '',
+				website: '',
+				phone: '',
+				address: ''
+			},
+			rules: {
+				name: [
+					{ required: true, message: 'please input name', trigger: 'blur' },
+				]
+			}
 		}
 	},
 
@@ -109,25 +145,30 @@ export default {
 					...node,
 					address: node.address['city']+'-'+node.address['street']
 				}
-				setTimeout(() => this.form.setFieldsValue(editNode), 1000);
+				this.ruleForm = editNode;
 			} else {
 				this.modalTitle = "create";
 			}
 		},
-		handleSubmit(e) {
-			e.preventDefault();
-			this.form.validateFields((err, values) => {
-				if (!err) {
-				this.$notification.open({
-					message: "Received values of form: ",
-					description: JSON.stringify(values)
-				});
+		handleSubmit(formName, formObject) { 
+			this.$refs[formName].validate((valid) => {
+				if (!valid) {
+					console.log('error submit!!');
+					return false
 				}
+				console.log('formObject', formObject)
 			})
 		},
 		cancelModal() {
 			this.visible = false;
-			// this.form.resetFields();
+			this.ruleForm = {
+				id: '',
+				name: '',
+				username: '',
+				website: '',
+				phone: '',
+				address: ''
+			}
 		},
 		confirmDelete() {
 			this.$message.success("Click on Yes");
@@ -140,7 +181,8 @@ export default {
 </script>
 
 <style>
-.ant-form-item {
+.el-form-item {
   margin-bottom: 6px;
 }
+
 </style>
