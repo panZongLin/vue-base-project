@@ -1,12 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-
 import SliderLayout from "../layout/SliderLayout.vue";
 import Welcome from "../views/welcome/welcome.vue";
-import Test from "../views/other/test.vue";
+import Farther from "../views/other/farther.vue";
 import TableExample from "../views/tableExample/tableExample.vue";
-import TableExample2 from "../views/tableExample/tableExample2.vue";
+import TableExampleJsx from "../views/tableExample/tableExampleJsx.vue";
+import TableExampleWithTs from "../views/tableExample/tableExampleWithTs.vue";
 
 import Page404 from "../views/page404.vue";
 
@@ -20,23 +20,28 @@ const routes = [
 			{
 				path: "/",
 				name: "home",
-				component: Welcome,
+				component: Welcome
 			},
 			{
 				path: "/sub1",
 				name: "subMenu/sub1",
-				component: Test,
+				component: Farther
 			},
 			{
 				path: "/tableExample",
-				name: "tableExample",
-				component: TableExample,
+				name: "tableExample", 
+				component: TableExample
 			},
 			{
-				path: "/tableExample2",
-				name: "tableExample2",
-				component: TableExample2,
-			}
+				path: "/tableExampleJsx",
+				name: "tableExampleJsx",
+				component: TableExampleJsx
+			},
+			{
+				path: "/tableExampleWithTs",
+				name: "tableExampleWithTs",
+				component: TableExampleWithTs
+			},
 		]
 	},
 	{

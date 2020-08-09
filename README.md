@@ -1,1 +1,1 @@
-# vue-project
+# vue-project with typescript

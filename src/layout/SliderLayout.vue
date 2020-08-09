@@ -65,63 +65,71 @@ export default {
 		}
 	},
 	methods: {
-		collapseMenu: function(a) {	
+		collapseMenu: function(a) {
 			this.collapsed = a;
 		}
 	},
 	render() {
-		const {collapsed, menuConfig, breadCrumb} = this;
+		const { collapsed, menuConfig, breadCrumb } = this;
 
-		return(
-			<a-layout id="leyout-wapper" style={{height: '100vh'}}>
-				<a-layout-sider onCollapse={this.collapseMenu} collapsed={collapsed} collapsible>
-					<div class="logo" />
-					{/**菜单  */}
-					<a-menu theme="dark" defaultSelectedKeys={[0]} mode="inline">
-						{menuConfig&&menuConfig.map((item, index)=> {
-							if(!item.sub) {
-								return(
-									<a-menu-item key={index}>
-										<router-link to={item.to}>
-											<a-icon type={item.icon} /><span>{item.title}</span>
-										</router-link>
-									</a-menu-item>
-								)
-							}
-							return(
-								<a-sub-menu key={index}>
-									<span slot="title">
-										<a-icon type={item.icon} /><span>{item.title}</span>
-									</span>
-									{item.sub&&item.sub.map((sub, idx)=> {
-										return(
-											<a-menu-item key={'sub'+idx}>
-												<router-link to={sub.to}>{sub.title}</router-link>
-											</a-menu-item>
-										)
-									})}								
-								</a-sub-menu>
-							)
+		return (
+		<a-layout id="leyout-wapper" style={{ height: "100vh" }}>
+			<a-layout-sider
+				onCollapse={this.collapseMenu}
+				collapsed={collapsed}
+				collapsible
+			>
+			<div class="logo" />
+			{/**菜单  */}
+			<a-menu theme="dark" defaultSelectedKeys={[0]} mode="inline">
+				{menuConfig &&menuConfig.map((item, index) => {
+					if (!item.sub) {
+					return (
+						<a-menu-item key={index}>
+							<router-link to={item.to}>
+								<a-icon type={item.icon} />
+								<span>{item.title}</span>
+							</router-link>
+						</a-menu-item>
+					);
+					}
+					return (
+					<a-sub-menu key={index}>
+						<span slot="title">
+							<a-icon type={item.icon} />
+							<span>{item.title}</span>
+						</span>
+						{item.sub &&item.sub.map((sub, idx) => {
+							return (
+							<a-menu-item key={"sub" + idx}>
+								<router-link to={sub.to}>{sub.title}</router-link>
+							</a-menu-item>
+							);
 						})}
-					</a-menu>					
-				</a-layout-sider>
-				<a-layout>
-					<a-layout-header class="header">
-						{/**面包屑 */}
-						<a-breadcrumb>
-							<a-breadcrumb-item>{breadCrumb}</a-breadcrumb-item>
-						</a-breadcrumb>
-					</a-layout-header>
-					<a-layout-content class="contentWrap">
-						<div class="content">
-							{/**路由 */}
-							<router-view></router-view>
-						</div>
-					</a-layout-content>
-					<a-layout-footer class="footer">Ant Design ©2018 Created by Ant UED</a-layout-footer>
-				</a-layout>
+					</a-sub-menu>
+					);
+				})}
+			</a-menu>
+			</a-layout-sider>
+			<a-layout>
+			<a-layout-header class="header">
+				{/**面包屑 */}
+				<a-breadcrumb>
+					<a-breadcrumb-item>{breadCrumb}</a-breadcrumb-item>
+				</a-breadcrumb>
+			</a-layout-header>
+			<a-layout-content class="contentWrap">
+				<div class="content">
+				{/**路由 */}
+				<router-view></router-view>
+				</div>
+			</a-layout-content>
+			<a-layout-footer class="footer">
+				Ant Design ©2018 Created by Ant UED
+			</a-layout-footer>
 			</a-layout>
-		)
+		</a-layout>
+		);
 	}
 }
 </script>

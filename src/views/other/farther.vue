@@ -27,28 +27,31 @@ export default {
 } 
 -->
 
-
 <script>
 import Children from "./chlidren";
 export default {
 	data() {
 		return {
 			val: ""
-		}
+		};
 	},
-	components: {
-		Children
-	},
+	// components: { //jsx写法可以直接使用组件
+	//   Children
+	// },
 	methods: {
 		handleChange00: function(val) {
 			this.val = val;
 		}
 	},
 	render() {
-		return(
+		return (
 			<div>
 				<p>父组件: {this.val}</p>
-				<Children title="HAHA" desc="这里是一段描述" onHandleChange={this.handleChange00}>
+				<Children
+					title="HAHA"
+					desc="这里是一段描述"
+					onHandleChange={this.handleChange00}
+				>
 					<span slot="name">子组件title: </span>
 				</Children>
 			</div>

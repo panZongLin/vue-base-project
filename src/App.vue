@@ -36,7 +36,6 @@
   background: #ededed;
   /* border-radius: 10px; */
 }
-
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

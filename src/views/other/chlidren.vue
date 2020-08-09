@@ -27,7 +27,7 @@ export default {
 	props: ["title", "desc"],
 	data() {
 		return {
-			val: ''
+			val: ""
 		};
 	},
 	methods: {
@@ -37,24 +37,24 @@ export default {
 		}
 	},
 	render() {
-		return(
-			<div>
-				{this.$slots.name} 
-				<span>{this.title}</span>
-				<p>子组件的描述: {this.desc}</p>
-				{/**
-					<a-input 
-						style={{width: '250px'}} 
-						onChange={(e)=>this.$emit("handleChange", e.target.value)} 				
-					/>
-				 */}
-				<el-input 
-					value={this.val}
-					style={{width: '250px'}}
-					onInput={(value)=>this.inputChange(value)} 	
-				/>								
-			</div>
-		)
+		return (
+		<div>
+			{this.$slots.name}
+			<span>{this.title}</span>
+			<p>子组件的描述: {this.desc}</p>
+			{/**
+						<a-input 
+							style={{width: '250px'}} 
+							onChange={(e)=>this.$emit("handleChange", e.target.value)} 				
+						/>
+					*/}
+			<el-input
+				value={this.val}
+				style={{ width: "250px" }}
+				onInput={value => this.inputChange(value)}
+			/>
+		</div>
+		);
 	}
 };
 </script>

@@ -77,110 +77,112 @@
 	</div>
 </template>
 
-<script>
-import { mapState, mapActions, mapMutations } from "vuex";
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+//State, Getter, Action, Mutation
+//不是局部模块的state，getter等可以通过以上装饰器直接获取
+import { namespace } from 'vuex-class';
 
-export default {
-	data() {
-		return {
-			currentPage: 1,
-			pageSize: 10,
-			visible: false,
-			modalTitle: "create",
-			ruleForm: {
-				id: "",
-				name: "",
-				username: "",
-				website: "",
-				phone: "",
-				address: ""
-			},
-			rules: {
-				name: [{ required: true, message: "please input name", trigger: "blur" }]
-			}
-		};
-	},
+//模块内的state，getter等则需要通过namespace来获取
+const tableExampleModule = namespace('tableExample');
+interface ruleForm {
+    id?: string,
+    name: string,
+    username: string,
+    website: string,
+    phone: string,
+    address: string 
+}
+interface rules {
+    name: object[]
+}
+
+@Component({})
+export default class TableExampleWithTs extends Vue {
+    currentPage: number = 1;
+    pageSize: number = 10;
+	visible: boolean = false;
+	modalTitle: string = "create";
+    ruleForm: ruleForm = {
+        id: "",
+        name: "",
+        username: "",
+        website: "",
+        phone: "",
+        address: ""
+    }
+    rules: rules = {
+        name: [{ required: true, message: "please input name", trigger: "blur" }]
+	}
+
+	// 	 @State('foo') stateFoo: any
+	//   @State(state => state.bar) stateBar: any
+	//   @Getter('foo') getterFoo: any
+	//   @Action('foo') actionFoo: any
+	//   @Mutation('foo') mutationFoo: any
+	@tableExampleModule.State('A') A: any
+	@tableExampleModule.State('tableList') tableList: any
+	@tableExampleModule.Getter('doubleA') doubleA: any
+	@tableExampleModule.Action('getTableList') getTableList: any
+	@tableExampleModule.Mutation('tripleA') tripleA: any
+
 
 	mounted() {
-		// this.$store.dispatch('tableExample/getTableList', {
-		//   page: 1,
-		//   pageSize: 10
-		// })
 		this.getTableList({
 			page: 1,
 			pageSize: 10
 		});
-		// this.$store.commit('tableExample/tripleA')
-		// this.tripleA()
-	},
+	}
 
-	computed: {
-		...mapState("tableExample", {
-			A: state => state.A,
-			tableList: state => state.tableList
-		}),
-		doubleA: function() {
-			return this.$store.getters["tableExample/doubleA"];
-		}
-	},
-
-	methods: {
-		...mapActions({
-			getTableList: "tableExample/getTableList"
-		}),
-		...mapMutations({
-			tripleA: "tableExample/tripleA"
-		}),
-		handleSizeChange(val) {
-			console.log(`每页 ${val} 条`);
-			this.currentPage = 1;
-			this.pageSize = val;
-		},
-		handleCurrentChange(val) {
-			console.log(`当前页: ${val}`);
-			this.currentPage = val;
-		},
-		showModal(way, node) {
-			this.visible = true;
-			if (way == "edit") {
-				this.modalTitle = "edit";
-				let editNode = {
-				...node,
-				address: node.address["city"] + "-" + node.address["street"]
-				};
-				this.ruleForm = editNode;
-			} else {
-				this.modalTitle = "create";
-			}
-		},
-		handleSubmit(formName, formObject) {
-			this.$refs[formName].validate(valid => {
-				if (!valid) {
-				console.log("error submit!!");
-				return false;
-				}
-				console.log("formObject", formObject);
-			});
-		},
-		cancelModal() {
-			this.visible = false;
-			this.ruleForm = {
-				id: "",
-				name: "",
-				username: "",
-				website: "",
-				phone: "",
-				address: ""
+	handleSizeChange(val: number) {
+		console.log(`每页 ${val} 条`);
+		this.currentPage = 1;
+		this.pageSize = val;
+	}
+	handleCurrentChange(val: number) {
+		console.log(`当前页: ${val}`);
+		this.currentPage = val;
+	}
+	showModal(way: string, node: any) {
+		this.visible = true;
+		if (way == "edit") {
+			this.modalTitle = "edit";
+			let editNode = {
+			...node,
+			address: node.address["city"] + "-" + node.address["street"]
 			};
-		},
-		confirmDelete() {
-			this.$message.success("Click on Yes");
-		},
-		cancelDelete() {
-			this.$message.error("Click on No");
+			this.ruleForm = editNode;
+		} else {
+			this.modalTitle = "create";
 		}
 	}
-};
+	handleSubmit(formName: string, formObject: object) {
+		(this.$refs[formName] as any).validate((valid: boolean) => {
+			if (!valid) {
+				console.log("error submit!!");
+				return false;
+			}
+			console.log("formObject", formObject);
+		});
+	}
+	cancelModal() {
+		this.visible = false;
+		this.ruleForm = {
+			id: "",
+			name: "",
+			username: "",
+			website: "",
+			phone: "",
+			address: ""
+		};
+	}
+	confirmDelete() {
+		this.$message.success("Click on Yes");
+	}
+	cancelDelete() {
+		this.$message.error("Click on No");
+	}
+}
 </script>
 
 <style>

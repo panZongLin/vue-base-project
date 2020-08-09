@@ -18,18 +18,18 @@ export default {
 		}
 	},
 	render() {
-		const {visible, title, content} = this;
-		return(
-			<div>
-				{/** 
-				<a-modal visible={visible} title={title} footer="" onCancel={this.handleCancel}>
-					<p>{content}</p>
-				</a-modal>*/}
-				<el-dialog title={title} visible={visible} onClose={this.handleCancel}>
-					<p>{content}</p>
-				</el-dialog>
-			</div>
-		)
+		const { visible, title, content } = this;
+		return (
+		<div>
+			{/** 
+					<a-modal visible={visible} title={title} footer="" onCancel={this.handleCancel}>
+						<p>{content}</p>
+					</a-modal>*/}
+			<el-dialog title={title} visible={visible} onClose={this.handleCancel}>
+				<p>{content}</p>
+			</el-dialog>
+		</div>
+		);
 	}
-};
+}
 </script>

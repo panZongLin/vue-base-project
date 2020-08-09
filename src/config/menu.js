@@ -1,30 +1,35 @@
 const menuConfig = [
 	{
-		title: 'home',
-		to: '/',
-		icon: 'desktop'
+		title: "home",
+		to: "/",
+		icon: "desktop"
 	},
 	{
-		title: 'subMenu',
+		title: "subMenu",
 		to: null,
-		icon: 'pie-chart',
+		icon: "pie-chart",
 		sub: [
 			{
-				title: 'sub1',
-				to: '/sub1',
+				title: "sub1",
+				to: "/sub1"
 			}
 		]
 	},
 	{
-		title: 'ant design vue',
-		to: '/tableExample',
-		icon: 'pie-chart'
+		title: "tableExample",
+		to: "/tableExample",
+		icon: "pie-chart"
 	},
 	{
-		title: 'element ui',
-		to: '/tableExample2',
-		icon: 'pie-chart'
+		title: "tableExampleJsx",
+		to: "/tableExampleJsx",
+		icon: "pie-chart"
 	},
-]
+	{
+		title: "tableExampleWithTs",
+		to: "/tableExampleWithTs",
+		icon: "pie-chart"
+	},
+];
 
 export default menuConfig;
