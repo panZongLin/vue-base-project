@@ -7,11 +7,12 @@ import Farther from "../views/other/farther.vue";
 import TableExample from "../views/tableExample/tableExample.vue";
 import TableExampleJsx from "../views/tableExample/tableExampleJsx.vue";
 import TableExampleWithTs from "../views/tableExample/tableExampleWithTs.vue";
+import TableExampleJsxWithTs from "../views/tableExample/tableExampleJsxWithTs.tsx"; 
 
 import Page404 from "../views/page404.vue";
 
 Vue.use(VueRouter);
-const routes = [
+const routes: Array<any> = [
 	{
 		path: "/",
 		name: "SliderLayout",
@@ -42,6 +43,11 @@ const routes = [
 				name: "tableExampleWithTs",
 				component: TableExampleWithTs
 			},
+			{
+				path: "/tableExampleJsxWithTs",
+				name: "tableExampleJsxWithTs",
+				component: TableExampleJsxWithTs
+			},
 		]
 	},
 	{
@@ -60,7 +66,7 @@ const routes = [
 	// }
 ];
 
-const router = new VueRouter({
+const router: VueRouter = new VueRouter({
 	routes
 });
 

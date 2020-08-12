@@ -45,7 +45,7 @@
 </template>
 -->
 <script>
-import menuConfig from "../config/menu";
+import menuConfig from "../config/menu.ts";
 export default {
 	data() {
 		return {

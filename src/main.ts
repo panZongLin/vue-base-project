@@ -8,7 +8,7 @@ import "element-ui/lib/theme-chalk/index.css";
 
 import App from "./App.vue";
 import "./registerServiceWorker";
-import router from "./config/router";
+import router from "./config/router.ts";
 import store from "./store";
 
 import Popup from "./components/Popup";

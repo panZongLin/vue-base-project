@@ -120,11 +120,11 @@ export default class TableExampleWithTs extends Vue {
 	//   @Getter('foo') getterFoo: any
 	//   @Action('foo') actionFoo: any
 	//   @Mutation('foo') mutationFoo: any
-	@tableExampleModule.State('A') A: any
-	@tableExampleModule.State('tableList') tableList: any
-	@tableExampleModule.Getter('doubleA') doubleA: any
-	@tableExampleModule.Action('getTableList') getTableList: any
-	@tableExampleModule.Mutation('tripleA') tripleA: any
+	@tableExampleModule.State('A') A!: number
+	@tableExampleModule.State('tableList') tableList!: object[]
+	@tableExampleModule.Getter('doubleA') doubleA!: number
+	@tableExampleModule.Action('getTableList') getTableList!: any
+	@tableExampleModule.Mutation('tripleA') tripleA!: any
 
 
 	mounted() {

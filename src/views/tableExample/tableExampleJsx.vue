@@ -134,7 +134,6 @@ export default {
 			columns,
 			visible: false,
 			modalTitle: "create",
-			formLayout: "horizontal",
 			form: this.$form.createForm(this, { name: "userInfoForm" })
 		}
 	},

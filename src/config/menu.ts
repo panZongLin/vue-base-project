@@ -30,6 +30,11 @@ const menuConfig = [
 		to: "/tableExampleWithTs",
 		icon: "pie-chart"
 	},
+	{
+		title: "tableExampleJsxWithTs",
+		to: "/tableExampleJsxWithTs",
+		icon: "pie-chart"
+	},
 ];
 
 export default menuConfig;
